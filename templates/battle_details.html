@@ -1,0 +1,156 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block content %}  
+
+
+<link rel="stylesheet" href="{% static 'step_bar/step_bar3.css' %}" type="text/css">
+
+
+ <main class="px-3" style="font-size: 14pt;">
+
+    <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">     
+        <div class="card" style="background-color: rgba(0, 0, 0, .1); border-color: whitesmoke; margin-top: 50px; margin-bottom: 200px;">
+           <div class="card-body">
+            <div>
+                <ul style="margin-top:50px">
+                    <li>
+                        <img src="{% static 'icon/icons8-map-justicon-lineal-96.png'%}"><br>
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        <p>Select Place</p>               
+                    </li>
+                    <li>
+                        <img src="{% static 'icon/icons8-viking-line-96.png'%}"><br>
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        <p>Select Characters</p>
+                    </li>
+                    <li>
+                        <img src="{% static 'icon/icons8-battle-dotted-96.png'%}"><br>
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        <p>Battle Results</p>
+                     </li>
+                </ul>
+            </div>
+                <div class="col">
+                    <div class="row" > 
+                         <div class="col-4" style="margin-top: 50px;">
+                             <h4>Hour</h4> 
+                             <p>{{battle.time}}</p>
+                            
+                         </div>
+                         
+                        <div class="col-4" style="margin-top: 50px;">
+                           <h4>Date</h4> 
+                           <p>{{battle.date}}</p>
+                            
+                        </div>
+                        
+                         <div class="col-4" style="margin-top: 50px;">
+                            <h4>Place</h4>
+                            <p>{{battle.place_name}}</p>                          
+
+                         </div>                    
+                     
+                    </div>
+                    <div class="row" >
+                        
+                        <h4 style="margin-top: 50px;">Battle Characters</h4>
+                        
+                        <div class="table-responsive" style="margin-top: 10px;">
+                            <table class="table table-striped table-sm text-white">
+                                <thead>
+                                    <th>Name</th>
+                                    <th>Race</th>
+                                </thead>
+                                <tbody>
+                                    
+                                    {% for character in fighters%}
+                                    <tr>
+                                        <td class="list-grop-item" style="color: white;">{{character.Nombre}}</td> 
+                                        <td class="list-grop-item" style="color: white;">{{character.Raza_label}}</td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                            
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6" style="margin-top: 50px;">
+                            <h4>Strongest Character in the Battle: </h4>
+                                {%for item in stats.most_violent%}
+                                <ul class="list-group list-group-horizontal" style="margin-left: 100px;">
+                                    <li class="list-group-item list-group-item-dark">{{item.id_attacker__character_name}}</li>
+                                    <li class="list-group-item">{{item.damage_points}}</li>
+                                 </ul>
+                                    
+                                {%endfor%}
+                            
+                            
+                            
+                        </div>
+                        <div class="col-6" style="margin-top: 50px;">
+                            <h4>Weakest Character in the Battle: </h4>
+                            
+                                {%for item in stats.less_violent%}
+                                <ul class="list-group list-group-horizontal" style="margin-left: 100px;">
+                                    <li class="list-group-item list-group-item-dark">{{item.id_attacker__character_name}}</li>
+                                    <li class="list-group-item">{{item.damage_points}}</li>
+                                 </ul>
+                                   
+                                {%endfor%}
+                            
+                        </div>                           
+                    </div>
+                    <div class="row">
+                        <div class="col-6" style="margin-top: 50px;">
+                            <h4>Most Damaged Character in the Battle: </h4>
+                            
+                                {%for item in stats.most_damaged%}
+                                <ul class="list-group list-group-horizontal" style="margin-left: 100px;">
+                                    <li class="list-group-item list-group-item-dark">{{item.id_damaged__character_name}}</li>
+                                    <li class="list-group-item">{{item.damage_points}}</li>
+                                 </ul>
+                                   
+                                {%endfor%}
+                            
+                        </div>
+                        <div class="col-6" style="margin-top: 50px;">
+                            <h4>Less Damaged Character in the Battle: </h4>
+                            
+                                {%for item in stats.less_damaged%}
+                                <ul class="list-group list-group-horizontal" style="margin-left: 100px;">
+                                    <li class="list-group-item list-group-item-dark" >{{item.id_damaged__character_name}}</li>
+                                    <li class="list-group-item">{{item.damage_points}}</li>
+                                 </ul>
+                                    
+                                {%endfor%}
+                            
+                        </div>                           
+                    </div>
+
+                    <div class="row" style="margin-top: 50px;">
+                        <h2>Winner</h2>
+                        <h4 style="margin-top: 20px;"><span class="border border-5 p-3"> {{winner.name}} </span></h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 offset-md-3" style="padding: 20px; margin-top: 100px; margin-bottom: 100px;">
+
+                        <a class="w-100 btn btn-primary btn-lg" href="{% url 'create_battle' %}" style="font-size: 18pt;">New Battle</a>
+
+                    </div>
+                </div>
+                                 
+                    
+            </div>
+           
+        </div>
+    </div>
+ </main>
+
+ {% endblock %}

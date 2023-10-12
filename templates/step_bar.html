@@ -1,0 +1,28 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'step_bar/step_bar.css' %}">
+    </head>
+    <body>
+        <div class="progress">
+            <ul>
+                <li>
+                    <img src="{% static 'icon/icons8-map-justicon-lineal-96.png' %}">
+                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                    <p style="color: white;">Select Place</p>               
+                </li>
+                <li>
+                    <img src="{% static 'icon/icons8-viking-line-96.png'%}">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    <p>Select Characters</p>
+                </li>
+                <li>
+                    <img src="{% static 'icon/icons8-battle-dotted-96.png'%}">
+                    <i class="fa fa-times" aria-hidden="true"></i> 
+                    <p>Battle Results</p>
+                 </li>
+            </ul>
+        </div>   
+    </body>
+</html>
